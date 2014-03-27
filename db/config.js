@@ -7,7 +7,7 @@ var domain = process.env.DBDOMAIN || '127.0.0.1';
 var port = process.env.DBPORT || '';
 var database = process.env.DBDATABASE || 'shortlydb';
 
-mongoose.connect(user + ':' + pword + '@' + domain + ':' + port + '/' + database);
+mongoose.connect('mongodb://'+user + ':' + pword + '@' + domain + ':' + port + '/' + database);
 
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
