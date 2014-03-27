@@ -112,11 +112,11 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'mochaTest',
-    'jshint',
-    'concat',
-    'uglify',
-    'cssmin'
+    // 'mochaTest',
+    // 'jshint',
+    // 'concat',
+    // 'uglify',
+    // 'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
@@ -128,8 +128,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('deploy', [
-    'mochaTest',
-    'jshint'
+    // 'mochaTest',
+    // 'jshint'
     // add your deploy tasks here
   ]);
 
