@@ -24,4 +24,4 @@ appendToExistingLog: false
 logFileFlushInterval: 5000
 flushResponse: false
 enableXFF: false
-promoteServerVars:
+# promoteServerVars:

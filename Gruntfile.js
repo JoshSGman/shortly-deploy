@@ -3,6 +3,13 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      options: {
+        separator: ';'
+      },
+      dist: {
+        src: ['public/client/**/*.js', 'public/lib/**/*.js', 'src/outro.js'],
+        dest: 'public/client/shortlyapp.min.js'
+      }
     },
 
     mochaTest: {
@@ -21,23 +28,34 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      my_target: {
+        files: {
+          'public/client/shortlyapp.min.js': ['public/client/shortlyapp.min.js']
+        }
+      }
     },
 
     jshint: {
       files: [
-        // Add filespec list here
+        'public/client/**/*.js'
       ],
       options: {
-        force: 'true',
+        force: 'false',
         jshintrc: '.jshintrc',
         ignores: [
           'public/lib/**/*.js',
+          'public/client/shortlyapp.min.js',
           'public/dist/**/*.js'
         ]
       }
     },
 
     cssmin: {
+      combine: {
+        files: {
+          'public/shortlyapp.min.css': ['public/style.css']
+        }
+      }
     },
 
     watch: {
@@ -94,6 +112,11 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
+    'mochaTest',
+    'jshint',
+    'concat',
+    'uglify',
+    'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
@@ -105,6 +128,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('deploy', [
+    'mochaTest',
+    'jshint'
     // add your deploy tasks here
   ]);
 
