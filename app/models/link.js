@@ -17,3 +17,8 @@ var Link = db.Model.extend({
 });
 
 module.exports = Link;
+
+
+var shasum = crypto.createHash('sha1');
+shashum.update(url);
+code : shasum.digest('hex').slice(0,5);
