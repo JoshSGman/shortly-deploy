@@ -1,7 +1,13 @@
 var mongoose = require('mongoose');
 var timestamps = require('mongoose-timestamp');
 
-mongoose.connect('mongodb://localhost/shortlydb');
+var user = process.env.DBUSER || '';
+var pword = process.env.DBPASSWORD || '';
+var domain = process.env.DBDOMAIN || '127.0.0.1';
+var port = process.env.DBPORT || '';
+var database = process.env.DBDATABASE || 'shortlydb';
+
+mongoose.connect(user + ':' + pword + '@' + domain + ':' + port + '/' + database);
 
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
@@ -24,15 +30,3 @@ User.plugin(timestamps);
 
 exports.UrlModel = mongoose.model('Urls', Url);
 exports.UserModel = mongoose.model('Users', User);
-
-var userInstance = new exports.UserModel();
-userInstance.username = 'joshua';
-userInstance.password = 'joshua';
-
-userInstance.save();
-
-console.log('it worked!');
-
-exports.UserModel.find({}, function(err, users) {
-  console.log(users);
-});
