@@ -7,7 +7,8 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['public/client/**/*.js', 'public/lib/**/*.js', 'src/outro.js'],
+        // src: ['public/lib/**/*.js', 'public/client/**/*.js'],
+        src: ['public/client/**/*.js'],
         dest: 'public/client/shortlyapp.min.js'
       }
     },
@@ -112,11 +113,10 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    // 'mochaTest',
     // 'jshint',
-    // 'concat',
-    // 'uglify',
-    // 'cssmin'
+    'concat',
+    'uglify',
+    'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
@@ -127,11 +127,9 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('deploy', [
-    // 'mochaTest',
-    // 'jshint'
-    // add your deploy tasks here
-  ]);
+  grunt.registerTask('deploy', function() {
+
+  });
 
 
 };
